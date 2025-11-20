@@ -124,7 +124,7 @@ Página "Welcome to Nginx" confirmando sucesso.
 
 ###### Dia 17/11/2025 ######
 
-Custom HTML page created
-Reviewed Nginx logs (access.log and error.log)
-Created a simple sysinfo automation script
+- Custom HTML page created
+- Reviewed Nginx logs (access.log and error.log)
+- Created a simple sysinfo automation script
 
