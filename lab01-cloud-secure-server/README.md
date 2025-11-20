@@ -112,10 +112,10 @@ ssh -i lab01-key.pem ubuntu@IP_PUBLICO
 # Após a instância ser parada e iniciada novamente, o IP público muda.
 
 # Instalação Nginx - Comandos Executados
-sudo apt update
-sudo apt upgrade -y
-sudo apt install -y nginx
-sudo systemctl status nginx
+- sudo apt update
+- sudo apt upgrade -y
+- sudo apt install -y nginx
+- sudo systemctl status nginx
 
 Verificação no browser:
 http://IP-PUBLICO
