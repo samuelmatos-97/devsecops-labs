@@ -108,6 +108,7 @@ Regras configuradas:
 Comando utilizado para aceder:
 
 #bash#
+
 ssh -i lab01-key.pem ubuntu@IP_PUBLICO
 # Após a instância ser parada e iniciada novamente, o IP público muda.
 
@@ -120,7 +121,7 @@ ssh -i lab01-key.pem ubuntu@IP_PUBLICO
 Verificação no browser:
 http://IP-PUBLICO
 
-Página "Welcome to Nginx" confirmando sucesso.
+Página "Welcome to Nginx" confirmada com sucesso.
 
 ###### Dia 17/11/2025 ######
 
