@@ -24,24 +24,29 @@ The main goal is to understand how to deploy a real cloud instance, access it se
 
 ### **AWS EC2**
 A service that provides virtual machines in the cloud.
+
 Allows choosing OS, hardware size, network rules, and access policies.
 
 ### **AMI**
 Amazon Machine Image — a template used to create the server.
-We used **Ubuntu Server 24.04 LTS**.
+
+I used **Ubuntu Server 24.04 LTS**.
 
 ### **Instance Type: t3.micro**
 Free Tier–eligible instance with:
 - 1 vCPU
 - 1 GB RAM
+
 Perfect for testing, learning, and small workloads.
 
 ### **Key Pair (.pem)**
 A private SSH key used instead of a password.
+
 Provides more secure authentication.
 
 ### **Security Groups**
 AWS-level firewall that controls inbound/outbound traffic.
+
 Configured rules:
 
 | Rule | Port | Source | Reason |
@@ -79,311 +84,314 @@ Configuration used:
 
 Initial access:
 
-/bash/
-ssh -i lab01-key.pem ubuntu@PUBLIC_IP
+#bash#
+
+`ssh -i lab01-key.pem ubuntu@PUBLIC_IP`
 
 Explanation:
-  - ssh - opens a secure terminal connection to a remote server.
-  - -i lab01-key.pem - specifies the private key for authentication.
-  - ubuntu - username used in Ubuntu AMIs on AWS.
-  - @PUBLIC_IP - the public IP address of the EC2 instance.
+  - `ssh` - opens a secure terminal connection to a remote server.
+  - `-i lab01-key.pem` - specifies the private key for authentication.
+  - `ubuntu` - username used in Ubuntu AMIs on AWS.
+  - `@PUBLIC_IP` - the public IP address of the EC2 instance.
 
 SSH checks the .pem key - verifies the user - opens a secure session.
 
 ## 3.3 Create a Dedicated User (devops)
 
-sudo adduser devops
+`sudo adduser devops`
 
-*
 Explanation:
-  - sudo - runs the command with administrator/root privileges.
-  - adduser - creates a new user on the system.
-  - devops - the username being created.
+  - `sudo` - runs the command with administrator/root privileges.
+  - `adduser` - creates a new user on the system.
+  - `devops` - the username being created.
 
 This creates:
-  - /home/devops/
+  - `/home/devops/`
   - user password
   - basic configuration files
-*
 
-sudo usermod -aG sudo devops
+`sudo usermod -aG sudo devops`
 
-*
 Explanation:
-  - usermod - modifies an existing user.
-  - -aG sudo - add the user to the sudo group (admin privileges).
-  - devops - the user to modify.
+  - `usermod` - modifies an existing user.
+  - `-aG sudo` - add the user to the sudo group (admin privileges).
+  - `devops` - the user to modify.
 
 This allows devops to run commands like:
-sudo apt update
-*
+
+`sudo apt update`
 
 # 🔐 Copy SSH Key to New User
 
 Command:
-sudo mkdir /home/devops/.ssh
 
-*
+`sudo mkdir /home/devops/.ssh`
+
 Explanation:
-Creates a .ssh directory, which stores SSH keys.
-Must exist for key-based login.
-*
+
+- Creates a .ssh directory, which stores SSH keys.
+- Must exist for key-based login.
 
 Command:
-sudo cp ~/.ssh/authorized_keys /home/devops/.ssh/
 
-*
+`sudo cp ~/.ssh/authorized_keys /home/devops/.ssh/`
+
 Explanation:
-Copies the file containing my public SSH key.
-This allows the same key to authenticate as the devops user.
-*
+
+- Copies the file containing my public SSH key.
+- This allows the same key to authenticate as the devops user.
 
 Command:
-sudo chown -R devops:devops /home/devops/.ssh
 
-*
+`sudo chown -R devops:devops /home/devops/.ssh`
+
 Explanation:
-chown - change owner.
-Ensures the devops user owns the .ssh directory.
-Required for SSH to accept the key.
-*
+
+- `chown` - change owner.
+- Ensures the devops user owns the .ssh directory.
+- Required for SSH to accept the key.
 
 Command:
-sudo chmod 700 /home/devops/.ssh
 
-*
+`sudo chmod 700 /home/devops/.ssh`
+
 Explanation:
-chmod 700 - only the user can read/write/enter the directory.
-SSH rejects directories with weaker permissions.
-*
+
+- `chmod 700` - only the user can read/write/enter the directory.
+- SSH rejects directories with weaker permissions.
 
 Command:
-sudo chmod 600 /home/devops/.ssh/authorized_keys
 
-*
+`sudo chmod 600 /home/devops/.ssh/authorized_keys`
+
 Explanation:
-Only the owner can read/write the file.
-Prevents other users from reading my authorized SSH keys.
-*
+
+- Only the owner can read/write the file.
+- Prevents other users from reading my authorized SSH keys.
 
 Command (login as devops):
-ssh -i lab01-key.pem devops@PUBLIC_IP
 
-*
+`ssh -i lab01-key.pem devops@PUBLIC_IP`
+
 Same as before but using the new user.
-*
 
 ## 3.4 Install Nginx
 
 Command:
-sudo apt update
 
-*
+`sudo apt update`
+
 Explanation:
-Downloads the list of available package updates from Ubuntu repositories.
-Does NOT install updates - just refreshes info.
-*
+
+- Downloads the list of available package updates from Ubuntu repositories.
+- Does NOT install updates - just refreshes info.
 
 Command:
-sudo apt upgrade -y
 
-*
+`sudo apt upgrade -y`
+
 Explanation:
-Installs all available package updates.
--y - automatically answers "yes" to prompts.
-Ensures the server is up to date and secure.
-*
+
+- Installs all available package updates.
+- `-y` - automatically answers "yes" to prompts.
+- Ensures the server is up to date and secure.
 
 Command:
-sudo apt install -y nginx
 
-*
+`sudo apt install -y nginx`
+
 Explanation:
-Installs the Nginx web server.
-Ubuntu automatically:
-  downloads Nginx
-  installs it
-  starts the Nginx service
-  enables it on boot
-*
+
+- Installs the Nginx web server.
+- Ubuntu automatically:
+  - downloads Nginx
+  - installs it
+  - starts the Nginx service
+  - enables it on boot
 
 Command:
-sudo systemctl status nginx
 
-*
+`sudo systemctl status nginx`
+
 Explanation:
-Shows current service status.
-Returns things like:
-  active (running)
-  PID
-  logs
-Useful to confirm the server is running.
-*
+
+- Shows current service status.
+- Returns things like:
+  - active (running)
+  - PID
+  - logs
+- Useful to confirm the server is running.
 
 ## 3.5 Configure UFW Firewall
 
 Command:
-sudo ufw allow 80/tcp
 
-*
+`sudo ufw allow 80/tcp`
+
 Explanation:
-Allows inbound HTTP traffic for Nginx.
-*
+
+- Allows inbound HTTP traffic for Nginx.
 
 Command:
-sudo ufw enable
 
-*
+`sudo ufw enable`
+
 Explanation:
-Activates the firewall.
-Prompts:
-Proceed with operation (y|n)?
-*
+
+- Activates the firewall.
+- Prompts:
+
+`Proceed with operation (y|n)?`
 
 Command:
-sudo ufw status verbose
 
-*
+`sudo ufw status verbose`
+
 Explanation:
-Shows active firewall rules and default policies.
-*
+
+- Shows active firewall rules and default policies.
 
 ## 3.6 SSH Hardening
 
 Command (edit SSH config):
-sudo nano /etc/ssh/sshd_config
 
-*
+`sudo nano /etc/ssh/sshd_config`
+
 Explanation:
-Opens the SSH server configuration file.
-I modify authentication rules here.
-*
+
+- Opens the SSH server configuration file.
+- I modify authentication rules here.
+
 
 Settings:
-PermitRootLogin no - Disables root login (recommended).
-PasswordAuthentication no - Disables password logins, only SSH keys allowed.
-PubkeyAuthentication yes - Enables key-based access.
+
+- `PermitRootLogin no` - Disables root login (recommended).
+- `PasswordAuthentication no` - Disables password logins, only SSH keys allowed.
+- `PubkeyAuthentication yes` - Enables key-based access.
 
 Command:
-sudo systemctl restart ssh
 
-*
+`sudo systemctl restart ssh`
+
 Explanation:
-Restarts SSH service to apply the new configuration.
-Does NOT close current SSH sessions.
-*
+
+- Restarts SSH service to apply the new configuration.
+- Does NOT close current SSH sessions.
 
 ## 3.7 Automatic updates
 
 Command:
-sudo apt install -y unattended-upgrades
 
-*
+`sudo apt install -y unattended-upgrades`
+
 Explanation:
-Installs a system package that automatically handles:
-  security patches
-  kernel updates
-  package fixes
-*
+
+- Installs a system package that automatically handles:
+  - security patches
+  - kernel updates
+  - package fixes
 
 Command:
-sudo dpkg-reconfigure --priority=low unattended-upgrades
 
-*
+`sudo dpkg-reconfigure --priority=low unattended-upgrades`
+
 Explanation:
-Shows a configuration screen where I choose:
-Enable automatic updates? Yes
-*
+
+- Shows a configuration screen where I choose:
+
+`Enable automatic updates? Yes`
 
 Command:
-sudo systemctl status unattended-upgrades
 
-*
+`sudo systemctl status unattended-upgrades`
+
 Explanation:
-Confirms that the automatic upgrade service is running.
-*
+
+- Confirms that the automatic upgrade service is running.
 
 ## 3.8 Custom HTML Page
 
 Command:
-echo "<h1>Lab 01 - Cloud Secure Server</h1><p>Created by Samuel</p>" | sudo tee /var/www/html/index.html
 
-*
+`echo "<h1>Lab 01 - Cloud Secure Server</h1><p>Created by Samuel</p>" | sudo tee /var/www/html/index.html`
+
 Explanation:
-echo - outputs the HTML content.
-| sudo tee - writes the content into a file with root permissions.
-File path is the default Nginx web directory.
+
+- `echo` - outputs the HTML content.
+- `| sudo tee` - writes the content into a file with root permissions.
+- File path is the default Nginx web directory.
 
 This generates my custom website homepage.
-*
 
 Command:
-sudo rm /var/www/html/index.nginx-debian.html
 
-*
+`sudo rm /var/www/html/index.nginx-debian.html`
+
 Explanation:
-Removes the default Nginx welcome page so my page becomes the default.
-*
+
+- Removes the default Nginx welcome page so my page becomes the default.
 
 ## 3.9 View Logs
 
 Command:
-sudo tail -n 20 /var/log/nginx/access.log
 
-*
+`sudo tail -n 20 /var/log/nginx/access.log`
+
 Explanation:
-tail -n 20 - shows the last 20 lines.
-access.log - contains all HTTP requests to the server.
+
+- `tail -n 20` - shows the last 20 lines.
+- `access.log` - contains all HTTP requests to the server.
 
 Great for:
-troubleshooting
-understanding traffic
-security investigations
-*
+- troubleshooting
+- understanding traffic
+- security investigations
 
 Command:
-sudo tail -n 20 /var/log/nginx/error.log
 
-*
+`sudo tail -n 20 /var/log/nginx/error.log`
+
 Explanation:
-Shows the last 20 error logs.
-Useful for debugging Nginx issues.
-*
+
+- Shows the last 20 error logs.
+- Useful for debugging Nginx issues.
 
 ## 3.10 Automation Script
 
 Command:
-sudo nano /usr/local/bin/sysinfo.sh
 
-*
+`sudo nano /usr/local/bin/sysinfo.sh`
+
 Explanation:
-Creates a new script file in /usr/local/bin, which is:
-  reserved for custom executables
-  automatically included in PATH
-*
+
+- Creates a new script file in /usr/local/bin, which is:
+  - reserved for custom executables
+  - automatically included in PATH
+
 
 Script content explanation:
 
-#!/bin/bash - tells the OS to run the script using Bash.
-echo "=== SYSTEM INFORMATION ===" - prints a header.
-echo "Hostname: $(hostname)" - prints machine hostname.
-echo "Date: $(date)" - shows current date/time.
-echo "Uptime: $(uptime -p)" - shows how long the system has been running.
-df -h / - prints disk usage of the root filesystem.
+
+- `#!/bin/bash` - tells the OS to run the script using Bash.
+- `echo "=== SYSTEM INFORMATION ==="` - prints a header.
+- `echo "Hostname: $(hostname)"` - prints machine hostname.
+- `echo "Date: $(date)"` - shows current date/time.
+- `echo "Uptime: $(uptime -p)"` - shows how long the system has been running.
+- `df -h /` - prints disk usage of the root filesystem.
 
 Command:
-sudo chmod +x /usr/local/bin/sysinfo.sh
 
-*
+`sudo chmod +x /usr/local/bin/sysinfo.sh`
+
 Explanation:
-Makes the script executable.
-*
+
+- Makes the script executable.
 
 Command:
-sysinfo.sh
 
-*
+`sysinfo.sh`
+
 Explanation:
-Executes the script because /usr/local/bin is in the PATH.
-*
+
+- Executes the script because /usr/local/bin is in the PATH.
 
