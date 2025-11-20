@@ -1,0 +1,99 @@
+# -----------------------
+# BASIC SECURITY (IMPORTANT)
+# -----------------------
+
+# SSH keys / private keys
+*.pem
+*.key
+*.pub
+*.p12
+*.cer
+*.crt
+*.csr
+
+# Environment files
+.env
+.env.*
+*.secrets
+
+# Credentials
+credentials.json
+aws_credentials
+*.token
+
+# -----------------------
+# LOGS & TEMP FILES
+# -----------------------
+*.log
+logs/
+*.out
+*.tmp
+*.temp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# -----------------------
+# PYTHON (for future labs)
+# -----------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Packages
+*.egg
+*.egg-info/
+dist/
+build/
+
+# -----------------------
+# EDITORS
+# -----------------------
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# JetBrains
+.idea/
+
+# -----------------------
+# TERRAFORM (future labs)
+# -----------------------
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+crash.log
+
+# -----------------------
+# DOCKER
+# -----------------------
+docker-compose.override.yml
+
+# -----------------------
+# SHELL SCRIPTS
+# -----------------------
+*.swp
+*.swo
+
+# -----------------------
+# BACKUPS / EXPORTS
+# -----------------------
+*.bak
+*.old
+*.backup
+
+# -----------------------
+# NODE (if used later)
+# -----------------------
+node_modules/
+npm-debug.log
