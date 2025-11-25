@@ -1,6 +1,6 @@
 # DevSecOps Labs
 
-Este repositório contém uma coleção de projetos/laboratórios criados para desenvolver competências práticas em DevSecOps, incluindo:
+This repository contains a collection of projects/labs designed to develop practical skills in DevSecOps, including:
 
 - Cloud
 - Linux
@@ -13,11 +13,12 @@ Este repositório contém uma coleção de projetos/laboratórios criados para d
 - Kubernetes Security
 - DevSecOps pipelines
 
-## 📂 Estrutura
-- `lab01-cloud-secure-server/` — Criar servidor seguro na cloud (VM, firewall, hardening)
-- `lab02-python-automation/` — Scripts Python de automação e análise de logs
-- `lab03-ci-cd/` — Pipeline CI/CD básica
-- `lab04-docker-containerization/` — Dockerfiles, imagens e scans de segurança
-- `lab05-kubernetes-basics/` — Deploy de apps num cluster local
-- `lab06-terraform-iac/` — Infraestrutura como código
-- `lab07-devsecops-pipeline/` — Pipeline completa com segurança integrada
+## 📂 Structure
+- `lab01-cloud-secure-server/` — Create a secure server in the cloud (VM, firewall, hardening)
+- `lab02-python-automation/` — Python scripts for automation and log analysis
+- `lab03-ci-cd/` — Basic CI/CD pipeline
+- `lab04-docker-containerization/` — Dockerfiles, images, and security scans
+- `lab05-kubernetes-basics/` — Deploy apps on a local cluster
+- `lab06-terraform-iac/` — Infrastructure as code
+- `lab07-devsecops-pipeline/` — Complete pipeline with integrated security
+

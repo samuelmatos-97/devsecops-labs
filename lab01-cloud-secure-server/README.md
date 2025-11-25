@@ -1,129 +1,128 @@
 # Lab 01 — Cloud Secure Server (AWS + Linux + Security)
 
-Este laboratório tem como objetivo criar um servidor seguro na AWS, configurá-lo via SSH, aplicar hardening inicial e documentar todo o processo.
+This lab aims to create a secure server on AWS, configure it via SSH, apply initial hardening, and document the entire process.
 
 ---
 
-## 🧱 Objetivos do Lab
-- Criar uma instância EC2 t2.micro (Free Tier)
-- Criar e gerir pares de chaves SSH
-- Configurar Security Groups (firewall AWS)
-- Aceder via SSH ao servidor
-- Instalar Nginx
-- Criar utilizador próprio (sem ser root)
-- Fazer hardening básico do sistema
-- Documentar comandos e procedimentos
+## 🧱 Lab Objectives
+- Create an EC2 t3.micro instance (Free Tier)
+- Create and manage SSH key pairs
+- Configure Security Groups (AWS firewall)
+- Access the server via SSH
+- Install Nginx
+- Create my own user (not root)
+- Perform basic system hardening
+- Document commands and procedures
 
 ---
 
-## 🛠️ Passos (visão geral)
-1. Criar instância EC2 na AWS
-2. Criar par de chaves (Key Pair)
-3. Configurar o Security Group (22 + 80)
-4. Aceder via SSH
-5. Instalar Nginx
-6. Criar utilizador e permissões
-7. Hardening básico
-8. Testes e validação
-9. Documentação final
+## 🛠️ Steps (overview)
+1. Create an EC2 instance on AWS
+2. Create a key pair
+3. Configure the Security Group (22 + 80)
+4. Access via SSH
+5. Install Nginx
+6. Create user and permissions
+7. Basic hardening
+8. Testing and validation
+9. Final documentation
 
 ---
 
-## 📦 Arquitetura Simples
-EC2 Instance (t2.micro)
+## 📦 Simple Architecture
+EC2 Instance (t3.micro)
+
 └── Linux + SSH + Nginx
+
 └── Security Group (22/80)
+
 └── Key Pair (SSH)
 
 ---
 
-## 📝 Notas importantes
-- No final, terminar sempre a instância para evitar custos. Nunca deixar instâncias EC2 ligadas sem necessidade.
-- Manter sempre as chaves SSH num local seguro. Não partilhar chaves SSH com ninguém.
-- Este lab prepara as bases para Docker, Kubernetes e Terraform.
-- Apagar instâncias, volumes e IPs elásticos quando terminar.
+## 📝 Important notes
+- At the end, always terminate the instance to avoid costs. Never leave EC2 instances running unnecessarily.
+- Always keep SSH keys in a safe place. Do not share SSH keys with anyone.
+- This lab lays the groundwork for Docker, Kubernetes, and Terraform.
+- Delete instances, volumes, and elastic IPs when finished.
 
 ---
 
 ## ✔ Checklist
-- [✔] Instância criada
-- [✔] Key Pair criado
-- [✔] Security Group configurado
-- [✔] SSH validado
-- [✔] Nginx instalado
-- [✔] Hardening feito
-- [✔] Documentação concluída
-
-###### Dia 16/11/2025 ######
+- [✔] Instance created
+- [✔] Key Pair created
+- [✔] Security Group configured
+- [✔] SSH validated
+- [✔] Nginx installed
+- [✔] Hardening done
+- [✔] Documentation completed
 
 # Lab 01 — Cloud Secure Server (AWS EC2 + Ubuntu + Nginx)
 
-Este laboratório tem como objetivo criar e configurar o primeiro servidor seguro na cloud, utilizando AWS EC2, Ubuntu Server e Nginx.
-Este exercício faz parte do meu roadmap DevSecOps, focando em cloud, infraestrutura e segurança.
+This lab aims to create and configure the first secure server in the cloud, using AWS EC2, Ubuntu Server, and Nginx.
+This exercise is part of my DevSecOps roadmap, focusing on cloud, infrastructure, and security.
 
 ---
 
-## 🧩 Objetivos do Lab
-- Criar uma instância EC2 na AWS (Free Tier)
-- Aceder ao servidor através de SSH de forma segura
-- Instalar e configurar um servidor web Nginx
-- Implementar boas práticas de segurança iniciais
-- Documentar o processo seguindo abordagem DevSecOps
+## 🧩 Lab Objectives
+- Create an EC2 instance on AWS (Free Tier)
+- Securely access the server via SSH
+- Install and configure an Nginx web server
+- Implement initial security best practices
+- Document the process following the DevSecOps approach
 
 ---
 
-## 🔧 Tecnologias e Serviços Utilizados
+## 🔧 Technologies and Services Used
 - **AWS EC2** (Elastic Compute Cloud)
 - **Ubuntu Server 24.04 LTS**
 - **Nginx Web Server**
-- **Security Groups (firewall AWS)**
-- **SSH com chave privada (.pem)**
+- **Security Groups (AWS firewall)**
+- **SSH with private key (.pem)**
 - **Terminal (PowerShell / Git Bash / SSH)**
 
 ---
 
-## ☁️ Criação da Instância EC2
-**Configurações escolhidas:**
+## ☁️ Creating the EC2 Instance
+**Configurations chosen:**
 
-- **Região:** Europe (Ireland) — `eu-west-1`
+- **Region:** Europe (Ireland) — `eu-west-1`
 - **AMI:** Ubuntu Server 24.04 LTS (HVM), SSD — *Free Tier Eligible*
-- **Tipo de instância:** `t3.micro` — *Free Tier*
-- **Armazenamento:** 8 GiB gp3
+- **Instance type:** `t3.micro` — *Free Tier*
+- **Storage:** 8 GiB gp3
 - **Key Pair:**
-  - Nome: `lab01-key`
-  - Tipo: RSA
-  - Formato: `.pem`
+  - Name: `lab01-key`
+  - Type: RSA
+  - Format: `.pem`
 
 ### 🔐 Security Group
-Regras configuradas:
+Configured rules:
 
-| Tipo | Porta | Origem | Descrição |
+| Type | Port | Source | Description |
 |------|-------|---------|-----------|
-| SSH  | 22 | My IP | Acesso seguro apenas a partir da minha rede |
-| HTTP | 80 | 0.0.0.0/0 | Permitir acesso ao servidor web |
+| SSH  | 22 | My IP | Secure access only from my network |
+| HTTP | 80 | 0.0.0.0/0 | Allow access to the web server |
 
 ---
 
-## 🔑 Acesso via SSH
-Comando utilizado para aceder:
+## 🔑 Access via SSH
+Command used to access:
 
 #bash#
 
-ssh -i lab01-key.pem ubuntu@IP_PUBLICO
-# Após a instância ser parada e iniciada novamente, o IP público muda.
+ssh -i lab01-key.pem ubuntu@PUBLIC_IP
+# After the instance is stopped and restarted, the public IP changes.
 
-# Instalação Nginx - Comandos Executados
+# Nginx Installation - Commands Executed
 - sudo apt update
 - sudo apt upgrade -y
 - sudo apt install -y nginx
 - sudo systemctl status nginx
 
-Verificação no browser:
-http://IP-PUBLICO
+Verification in the browser:
+http://PUBLIC_IP
 
-Página "Welcome to Nginx" confirmada com sucesso.
-
-###### Dia 17/11/2025 ######
+“Welcome to Nginx” page successfully confirmed.
 
 - Custom HTML page created
 - Reviewed Nginx logs (access.log and error.log)
