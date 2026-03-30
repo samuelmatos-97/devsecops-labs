@@ -1,0 +1,24 @@
+{
+    "total_requests": 7,
+    "status_codes": {
+        "200": 3,
+        "404": 3,
+        "500": 1
+    },
+    "top_endpoints": {
+        "/admin": 3,
+        "/index.html": 1,
+        "/login": 1,
+        "/api/login": 1,
+        "/static/js/app.js": 1
+    },
+    "suspicious_ips": [
+        {
+            "ip_address": "192.168.1.12",
+            "404_count": 3,
+            "targeted_endpoints": [
+                "/admin"
+            ]
+        }
+    ]
+}

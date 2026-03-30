@@ -25,6 +25,7 @@ aws_credentials
 # LOGS & TEMP FILES
 # -----------------------
 *.log
+!lab02-python-automation/data/sample_nginx.log
 logs/
 *.out
 *.tmp
