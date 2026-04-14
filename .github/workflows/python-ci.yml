@@ -1,0 +1,30 @@
+name: Python CI Pipeline
+
+on:
+  push:
+    paths:
+      - "lab02-python-automation/**"
+      - ".github/workflows/python-ci.yml"
+  pull_request:
+    paths:
+      - "lab02-python-automation/**"
+      - ".github/workflows/python-ci.yml"
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Show Python version
+        run: python --version
+
+      - name: Run Python script
+        run: python lab02-python-automation/src/log_analyzer.py
