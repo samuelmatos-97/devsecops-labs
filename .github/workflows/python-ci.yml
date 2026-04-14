@@ -28,3 +28,17 @@ jobs:
 
       - name: Run Python script
         run: python lab02-python-automation/src/log_analyzer.py
+
+      - name: Validate JSON report
+        run: |
+          if [ ! -f lab02-python-automation/reports/log_summary.json ]; then
+            echo "JSON report was not generated."
+            exit 1
+          fi
+          echo "JSON report exists."
+
+      - name: Upload JSON report as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: lab02-log-summary
+          path: lab02-python-automation/reports/log_summary.json
