@@ -70,9 +70,9 @@ These can be downloaded from the GitHub Actions run.
 
 ---
 
-## Evidence
+## Evidences
 
-(Add screenshots in the `evidence/` folder)
+(Add screenshots in the `evidences/` folder)
 
 - Pipeline execution (success)
 - Bandit scan step
@@ -96,7 +96,7 @@ These can be downloaded from the GitHub Actions run.
 
 ---
 
-## Evidence
+## Evidences
 
 ### Pipeline Execution
 ![Pipeline Success](evidences/01-pipeline-success.png)
