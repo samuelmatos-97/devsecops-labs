@@ -16,15 +16,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version: "3.13"
 
       - name: Show Python version
         run: python --version
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit security scan
+        run: |
+          mkdir -p security-reports
+          bandit -r lab02-python-automation/src -f json -o security-reports/bandit-report.json
 
       - name: Run Python script
         run: python lab02-python-automation/src/log_analyzer.py
@@ -42,3 +50,9 @@ jobs:
         with:
           name: lab02-log-summary
           path: lab02-python-automation/reports/log_summary.json
+
+      - name: Upload Bandit report as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: bandit-security-report
+          path: security-reports/bandit-report.json
