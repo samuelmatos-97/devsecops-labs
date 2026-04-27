@@ -30,6 +30,7 @@ logs/
 *.out
 *.tmp
 *.temp
+*.tar
 
 # OS-specific files
 .DS_Store
