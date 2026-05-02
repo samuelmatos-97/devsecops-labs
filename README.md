@@ -13,7 +13,7 @@ This repository contains a collection of projects/labs designed to develop pract
 - Kubernetes Security
 - DevSecOps pipelines
 
-## 📂 Structure
+## Structure
 - `lab01-cloud-secure-server/` — Create a secure server in the cloud (VM, firewall, hardening)
 - `lab02-python-automation/` — Python scripts for automation and log analysis
 - `lab03-ci-cd/` — Basic CI/CD pipeline
@@ -21,4 +21,3 @@ This repository contains a collection of projects/labs designed to develop pract
 - `lab05-kubernetes-basics/` — Deploy apps on a local cluster
 - `lab06-terraform-iac/` — Infrastructure as code
 - `lab07-devsecops-pipeline/` — Complete pipeline with integrated security
-

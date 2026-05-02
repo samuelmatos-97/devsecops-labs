@@ -22,7 +22,7 @@ Since the application is a **batch process** (it runs and exits), a **Kubernetes
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
     devsecops-labs/
     ├── lab02-python-automation/
