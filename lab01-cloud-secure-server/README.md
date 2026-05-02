@@ -4,7 +4,7 @@ This lab aims to create a secure server on AWS, configure it via SSH, apply init
 
 ---
 
-## 🧱 Lab Objectives
+## Lab Objectives
 - Create an EC2 t3.micro instance (Free Tier)
 - Create and manage SSH key pairs
 - Configure Security Groups (AWS firewall)
@@ -16,7 +16,7 @@ This lab aims to create a secure server on AWS, configure it via SSH, apply init
 
 ---
 
-## 🛠️ Steps (overview)
+## Steps (overview)
 1. Create an EC2 instance on AWS
 2. Create a key pair
 3. Configure the Security Group (22 + 80)
@@ -29,7 +29,7 @@ This lab aims to create a secure server on AWS, configure it via SSH, apply init
 
 ---
 
-## 📦 Simple Architecture
+## Simple Architecture
 EC2 Instance (t3.micro)
 
 └── Linux + SSH + Nginx
@@ -40,7 +40,7 @@ EC2 Instance (t3.micro)
 
 ---
 
-## 📝 Important notes
+## Important notes
 - At the end, always terminate the instance to avoid costs. Never leave EC2 instances running unnecessarily.
 - Always keep SSH keys in a safe place. Do not share SSH keys with anyone.
 - This lab lays the groundwork for Docker, Kubernetes, and Terraform.
@@ -64,7 +64,7 @@ This exercise is part of my DevSecOps roadmap, focusing on cloud, infrastructure
 
 ---
 
-## 🧩 Lab Objectives
+## Lab Objectives
 - Create an EC2 instance on AWS (Free Tier)
 - Securely access the server via SSH
 - Install and configure an Nginx web server
@@ -73,7 +73,7 @@ This exercise is part of my DevSecOps roadmap, focusing on cloud, infrastructure
 
 ---
 
-## 🔧 Technologies and Services Used
+## Technologies and Services Used
 - **AWS EC2** (Elastic Compute Cloud)
 - **Ubuntu Server 24.04 LTS**
 - **Nginx Web Server**
@@ -83,7 +83,7 @@ This exercise is part of my DevSecOps roadmap, focusing on cloud, infrastructure
 
 ---
 
-## ☁️ Creating the EC2 Instance
+## Creating the EC2 Instance
 **Configurations chosen:**
 
 - **Region:** Europe (Ireland) — `eu-west-1`
@@ -95,7 +95,7 @@ This exercise is part of my DevSecOps roadmap, focusing on cloud, infrastructure
   - Type: RSA
   - Format: `.pem`
 
-### 🔐 Security Group
+### Security Group
 Configured rules:
 
 | Type | Port | Source | Description |
@@ -105,7 +105,7 @@ Configured rules:
 
 ---
 
-## 🔑 Access via SSH
+## Access via SSH
 Command used to access:
 
 #bash#
@@ -127,4 +127,3 @@ http://PUBLIC_IP
 - Custom HTML page created
 - Reviewed Nginx logs (access.log and error.log)
 - Created a simple sysinfo automation script
-

@@ -5,7 +5,7 @@ The main goal is to understand how to deploy a real cloud instance, access it se
 
 ---
 
-# 🎯 1. Lab Objectives
+# 1. Lab Objectives
 
 - Deploy an EC2 instance using AWS Free Tier
 - Access the instance securely via SSH and key-based authentication
@@ -20,7 +20,7 @@ The main goal is to understand how to deploy a real cloud instance, access it se
 
 ---
 
-# ☁️ 2. Key Concepts Explained
+# 2. Key Concepts Explained
 
 ### **AWS EC2**
 A service that provides virtual machines in the cloud.
@@ -68,7 +68,7 @@ The practice of securing a system by reducing attack surfaces.
 
 ---
 
-# 🛠️ 3. Steps Performed in the Lab
+# 3. Steps Performed in the Lab
 
 ## 3.1 Deploy EC2 Instance
 Configuration used:
@@ -121,7 +121,7 @@ This allows devops to run commands like:
 
 `sudo apt update`
 
-# 🔐 Copy SSH Key to New User
+# Copy SSH Key to New User
 
 Command:
 
@@ -394,4 +394,3 @@ Command:
 Explanation:
 
 - Executes the script because /usr/local/bin is in the PATH.
-
