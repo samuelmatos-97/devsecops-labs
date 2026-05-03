@@ -32,7 +32,7 @@ devsecops-labs/
 │   ├── main.tf
 │   ├── README.md
 │   ├── documentation.md
-│   └── evidence/
+│   └── evidences/
 ```
 
 ---
