@@ -37,7 +37,7 @@ logs/
 Thumbs.db
 
 # -----------------------
-# PYTHON (for future labs)
+# PYTHON
 # -----------------------
 __pycache__/
 *.pyc
@@ -68,7 +68,7 @@ build/
 .idea/
 
 # -----------------------
-# TERRAFORM (future labs)
+# TERRAFORM
 # -----------------------
 .terraform/
 .terraform.lock.hcl
@@ -95,7 +95,7 @@ docker-compose.override.yml
 *.backup
 
 # -----------------------
-# NODE (if used later)
+# NODE
 # -----------------------
 node_modules/
 npm-debug.log
