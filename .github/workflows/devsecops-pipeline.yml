@@ -1,0 +1,64 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    paths:
+      - "lab02-python-automation/**"
+      - "lab04-docker-containerization/**"
+      - ".github/workflows/devsecops-pipeline.yml"
+  pull_request:
+    paths:
+      - "lab02-python-automation/**"
+      - "lab04-docker-containerization/**"
+      - ".github/workflows/devsecops-pipeline.yml"
+
+jobs:
+  devsecops-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Show Python version
+        run: python --version
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit security scan
+        run: |
+          mkdir -p security-reports
+          bandit -r lab02-python-automation/src -f json -o security-reports/bandit-report.json
+
+      - name: Run Python log analyzer
+        run: python lab02-python-automation/src/log_analyzer.py
+
+      - name: Validate JSON report
+        run: |
+          if [ ! -f lab02-python-automation/reports/log_summary.json ]; then
+            echo "JSON report was not generated."
+            exit 1
+          fi
+          echo "JSON report exists."
+
+      - name: Build Docker image
+        run: |
+          docker build -t log-analyzer:ci -f lab04-docker-containerization/Dockerfile .
+
+      - name: Upload log analysis report
+        uses: actions/upload-artifact@v7
+        with:
+          name: lab07-log-summary
+          path: lab02-python-automation/reports/log_summary.json
+
+      - name: Upload Bandit security report
+        uses: actions/upload-artifact@v7
+        with:
+          name: lab07-bandit-security-report
+          path: security-reports/bandit-report.json
