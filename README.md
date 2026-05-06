@@ -10,7 +10,6 @@ This repository contains a collection of projects/labs designed to develop pract
 - Kubernetes
 - Terraform
 - Security Scanning (SAST, SCA, DAST)
-- Kubernetes Security
 - DevSecOps pipelines
 
 ## Structure
