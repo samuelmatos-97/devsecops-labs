@@ -38,7 +38,7 @@ On every push or pull request:
     └── lab03-ci-cd/
         ├── README.md
         ├── documentation.md
-        └── evidence/
+        └── evidences/
 
 ---
 

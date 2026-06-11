@@ -1,22 +1,24 @@
 # DevSecOps Labs
 
-This repository contains a collection of projects/labs designed to develop practical skills in DevSecOps, including:
+Hands-on DevSecOps portfolio focused on CI/CD, automation, containerization, Infrastructure as Code, cloud infrastructure and security scanning.
 
-- Cloud
-- Linux
-- Python automation
-- CI/CD
-- Docker
-- Kubernetes
-- Terraform
-- Security Scanning (SAST, SCA, DAST)
-- DevSecOps pipelines
+## Labs Overview
 
-## Structure
-- `lab01-cloud-secure-server/` — Create a secure server in the cloud (VM, firewall, hardening)
-- `lab02-python-automation/` — Python scripts for automation and log analysis
-- `lab03-ci-cd/` — Basic CI/CD pipeline
-- `lab04-docker-containerization/` — Dockerfiles, images, and security scans
-- `lab05-kubernetes-basics/` — Deploy apps on a local cluster
-- `lab06-terraform-iac/` — Infrastructure as code
-- `lab07-devsecops-pipeline/` — Complete pipeline with integrated security
+| Lab | Topic | Main Tools | Outcome |
+|---|---|---|---|
+| Lab 01 | Cloud secure server | AWS, Linux, Firewall | Secure VM setup |
+| Lab 02 | Python automation | Python | Log analysis automation |
+| Lab 03 | CI/CD | GitHub Actions, Bandit | Automated CI pipeline with security scanning |
+| Lab 04 | Docker | Docker | Containerized application |
+| Lab 05 | Kubernetes | Kubernetes | Local app deployment |
+| Lab 06 | Terraform IaC | Terraform, AWS EC2 | Infrastructure provisioning |
+| Lab 07 | DevSecOps Pipeline | GitHub Actions, Bandit, Docker | Integrated security pipeline |
+
+## Key Skills Demonstrated
+
+- CI/CD automation with GitHub Actions
+- Static security scanning with Bandit
+- Docker image build validation
+- Infrastructure provisioning with Terraform
+- AWS EC2 lifecycle management
+- Artifact generation and pipeline evidence
